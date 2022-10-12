@@ -59,6 +59,10 @@ ORDER BY TotalDeathCount DESC
 
 SELECT continent, MAX(cast(Total_deaths AS INT)) AS TotalDeathCount
 FROM covid_19_data
+WHERE continent IS NOT NULL
+GROUP BY continent
+ORDER BY TotalDeathCount DESC
+
 
 
 
