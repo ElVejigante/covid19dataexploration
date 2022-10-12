@@ -81,7 +81,17 @@ ORDER BY 2,3
 
 -- Using CTE to perform Calculation on PARTITION BY in previous query
 
-
+WITH PopvsVac (Continent, Location, Date, Population, new_vaccinations, RollingPeopleVaccinated)
+AS (
+    SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, SUM(CONVERT(INT, vac.new_vaccinations)) OVER (PARTITION BY dea.Location ORDER BY dea.location, dea.Date) as RollingPeopleVaccinated
+    FROM covid_19_data_deaths dea
+    JOIN covid_19_data_vaccinations vac
+        ON dea.location = vac.location
+        AND dea.date = vac.date
+    WHERE dea.continent IS NOT NULL
+)
+SELECT *, (RollingPeopleVaccinated/Population)*100
+FROM PopvsVac
 
 
 
