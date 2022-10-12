@@ -72,7 +72,14 @@ ORDER BY 1,2
 -- %Population that has received at least 1 vaccine
 
 SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, SUM(CONVERT(INT,vac.new_vaccinations)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date) AS RollingPeopleVaccinated
-FROM covid_19_data
+FROM covid_19_data_deaths dea
+JOIN covid_19_data_vaccinations vac
+    ON dea.location = vac.location
+    AND dea.date = vac.date
+WHERE dea.continent IS NOT NULL
+ORDER BY 2,3
+
+-- Using CTE to perform Calculation on PARTITION BY in previous query
 
 
 
