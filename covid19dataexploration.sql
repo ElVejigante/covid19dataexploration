@@ -53,6 +53,13 @@ WHERE continent IS NOT NULL
 GROUP BY Location
 ORDER BY TotalDeathCount DESC
 
+-- CONTINENTAL BREAKDOWN:
+
+-- Continents with highest death count per population
+
+SELECT continent, MAX(cast(Total_deaths AS INT)) AS TotalDeathCount
+FROM covid_19_data
+
 
 
 
