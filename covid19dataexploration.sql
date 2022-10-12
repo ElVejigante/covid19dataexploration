@@ -23,8 +23,16 @@ ORDER BY 1,2
 
 SELECT Location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 AS DeathPercentage
 FROM covid_19_data
-WHERE Location like '%states%'
+WHERE Location LIKE '%states%'
 AND continent IS NOT NULL
+ORDER BY 1,2
+
+-- Total Cases vs Population
+-- Shows percentage of population infected with COVID
+
+SELECT Location, date, population, total_cases, (total_cases/population)*100 as PercentPopulationInfected
+FROM covid_19_data
+--WHERE Location LIKE '%states%'
 ORDER BY 1,2
 
 
