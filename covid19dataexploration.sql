@@ -68,6 +68,12 @@ FROM covid_19_data
 WHERE continent IS NOT NULL
 ORDER BY 1,2
 
+-- Total Population vs Vaccinations
+-- %Population that has received at least 1 vaccine
+
+SELECT dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations, SUM(CONVERT(INT,vac.new_vaccinations)) OVER (PARTITION BY dea.location ORDER BY dea.location, dea.date) AS RollingPeopleVaccinated
+FROM covid_19_data
+
 
 
 
