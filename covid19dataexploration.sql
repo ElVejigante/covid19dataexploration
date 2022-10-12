@@ -93,5 +93,20 @@ AS (
 SELECT *, (RollingPeopleVaccinated/Population)*100
 FROM PopvsVac
 
+-- Using Temp Table to calculate on PARTITION BY in previous query
+
+DROP TABLE if exists
+CREATE TABLE
+(
+    Continent NVARCHAR(255),
+    Location NVARCHAR(255),
+    Date DATETIME,
+    Population NUMERIC,
+    New-vaccinations NUMERIC,
+    RollingPeopleVaccinated NUMERIC
+)
+
+
+
 
 
