@@ -53,7 +53,7 @@ WHERE continent IS NOT NULL
 GROUP BY Location
 ORDER BY TotalDeathCount DESC
 
--- CONTINENTAL BREAKDOWN:
+-- CONTINENTAL BREAKDOWN, GLOBAL NUMBERS:
 
 -- Continents with highest death count per population
 
@@ -62,6 +62,11 @@ FROM covid_19_data
 WHERE continent IS NOT NULL
 GROUP BY continent
 ORDER BY TotalDeathCount DESC
+
+SELECT SUM(new_cases) AS total_cases, SUM(cast(new_deaths AS INT)) AS total_deaths, SUM(cast(new_deaths AS INT))/SUM(new_cases)*100 AS DeathPercentage
+FROM covid_19_data
+WHERE continent IS NOT NULL
+ORDER BY 1,2
 
 
 
