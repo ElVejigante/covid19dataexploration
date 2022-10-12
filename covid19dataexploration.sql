@@ -35,4 +35,12 @@ FROM covid_19_data
 --WHERE Location LIKE '%states%'
 ORDER BY 1,2
 
+-- Countries with Highest Infection Rate compared to Population
+
+SELECT Location, Population, MAX(total_cases) AS HighestInfectionCount, MAX((total_cases/population))*100 AS PercentPopulationInfected
+FROM covid_19_data
+--WHERE Location LIKE '%states%'
+WHERE continent IS NOT NULL
+GROUP BY Location, Population
+ORDER BY PercentPopulationInfected DESC
 
